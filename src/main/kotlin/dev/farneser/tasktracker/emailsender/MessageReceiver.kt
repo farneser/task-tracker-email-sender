@@ -1,4 +1,4 @@
-package com.example.tasktracker.emailsender
+package dev.farneser.tasktracker.emailsender
 
 import org.springframework.amqp.rabbit.annotation.EnableRabbit
 import org.springframework.amqp.rabbit.annotation.RabbitListener

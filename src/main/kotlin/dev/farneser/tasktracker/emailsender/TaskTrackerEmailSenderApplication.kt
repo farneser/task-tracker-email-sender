@@ -1,4 +1,4 @@
-package com.example.tasktracker.emailsender
+package dev.farneser.tasktracker.emailsender
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
