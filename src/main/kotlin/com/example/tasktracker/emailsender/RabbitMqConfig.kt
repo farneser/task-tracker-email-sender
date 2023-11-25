@@ -13,6 +13,6 @@ fun newRegisterQueue(): Queue {
 }
 
 @Bean
-fun dailyQueue(): Queue {
-    return Queue(QueueType.DAILY, false)
+fun scheduledQueue(): Queue {
+    return Queue(QueueType.SCHEDULED, false)
 }

@@ -10,11 +10,11 @@ import org.springframework.stereotype.Component
 class MessageReceiver {
     @RabbitListener(queues = [QueueType.NEW_REGISTER])
     fun receiveMessageFromQueue1(message: String) {
-        println("Received message from Queue 1: $message")
+        println("Received message from register queue: $message")
     }
 
-    @RabbitListener(queues = [QueueType.DAILY])
+    @RabbitListener(queues = [QueueType.SCHEDULED])
     fun receiveMessageFromQueue2(message: String) {
-        println("Received message from Queue 2: $message")
+        println("Received message from daily queue: $message")
     }
 }
