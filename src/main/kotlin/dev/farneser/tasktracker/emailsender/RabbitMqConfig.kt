@@ -14,5 +14,5 @@ fun newRegisterQueue(): Queue {
 
 @Bean
 fun scheduledQueue(): Queue {
-    return Queue(QueueType.SCHEDULED, false)
+    return Queue(QueueType.SCHEDULED)
 }
