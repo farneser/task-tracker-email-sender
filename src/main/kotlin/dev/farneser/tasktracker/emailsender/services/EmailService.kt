@@ -13,7 +13,6 @@ class EmailService(private val javaMailSender: JavaMailSender) {
     }
 
     fun send(to: String, subject: String, message: String, isHtml: Boolean = true) {
-
         try {
             val messageHelper = MimeMessageHelper(javaMailSender.createMimeMessage(), "UTF-8")
 
@@ -22,6 +21,7 @@ class EmailService(private val javaMailSender: JavaMailSender) {
             messageHelper.setText(message, isHtml)
 
             javaMailSender.send(messageHelper.mimeMessage)
+            log.info("Email sent to $to")
         } catch (e: Exception) {
             log.error("Error sending email to $to", e)
         }
