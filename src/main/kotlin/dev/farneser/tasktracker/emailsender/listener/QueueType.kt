@@ -1,4 +1,4 @@
-package dev.farneser.tasktracker.emailsender
+package dev.farneser.tasktracker.emailsender.listener
 
 import lombok.Getter
 

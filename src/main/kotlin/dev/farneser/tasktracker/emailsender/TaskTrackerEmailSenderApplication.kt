@@ -7,5 +7,5 @@ import org.springframework.boot.runApplication
 class TaskTrackerEmailSenderApplication
 
 fun main(args: Array<String>) {
-	runApplication<TaskTrackerEmailSenderApplication>(*args)
+    runApplication<TaskTrackerEmailSenderApplication>(*args)
 }

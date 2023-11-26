@@ -1,4 +1,4 @@
-package dev.farneser.tasktracker.emailsender
+package dev.farneser.tasktracker.emailsender.services
 
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
