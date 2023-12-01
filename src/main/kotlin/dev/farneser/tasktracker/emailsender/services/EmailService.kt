@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Value
 import org.springframework.mail.javamail.JavaMailSender
 import org.springframework.mail.javamail.MimeMessageHelper
 import org.springframework.stereotype.Service
+import org.springframework.util.Assert
 
 @Service
 class EmailService(private val javaMailSender: JavaMailSender) {
@@ -16,13 +17,23 @@ class EmailService(private val javaMailSender: JavaMailSender) {
         val log: Logger = LoggerFactory.getLogger(EmailService::class.java)
     }
 
-    fun send(to: String, subject: String, message: String, isHtml: Boolean = true) {
+    fun send(to: String, subject: String, message: String, htmlMessage: String) {
         try {
             val messageHelper = MimeMessageHelper(javaMailSender.createMimeMessage(), "UTF-8")
 
+            Assert.notNull(to, "Email address must not be null")
+            Assert.notNull(subject, "Subject must not be null")
+            Assert.notNull(message, "Message must not be null")
+
             messageHelper.setTo(to)
             messageHelper.setSubject(subject)
-            messageHelper.setText(message, isHtml)
+
+            if (htmlMessage.isEmpty()) {
+                messageHelper.setText(message, false)
+            } else {
+                messageHelper.setText(message, htmlMessage)
+            }
+
             messageHelper.setFrom(mailFrom)
 
             javaMailSender.send(messageHelper.mimeMessage)
