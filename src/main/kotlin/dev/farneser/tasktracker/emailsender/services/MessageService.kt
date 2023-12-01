@@ -19,8 +19,8 @@ class MessageService(private val templateEngine: TemplateEngine) {
         return currentDateTime.format(formatter)
     }
 
-    private fun getHelloMessage(email: String, date: String): String {
-        return "Hello, $email! Here is your statistic for $date"
+    private fun getHelloMessage(email: String): String {
+        return "Hello, $email! Here is your statistic"
     }
 
     private fun getCaption(date: String): String {
@@ -38,7 +38,7 @@ class MessageService(private val templateEngine: TemplateEngine) {
 
         val formattedDateTime = getFormattedDate()
 
-        context.setVariable("helloMessage", getHelloMessage(dto.email, formattedDateTime))
+        context.setVariable("helloMessage", getHelloMessage(dto.email))
         context.setVariable("caption", getCaption(formattedDateTime))
 
         return templateEngine.process("scheduled", context)
@@ -49,14 +49,14 @@ class MessageService(private val templateEngine: TemplateEngine) {
         val separator = "\r\n"
         val date = getFormattedDate()
 
-        // Hello, {{email}}! Here is your statistic for {{date}} {{time}}
+        // Hello, {{email}}! Here is your statistic
         //
         // Your statistic for {{date}} {{time}}
         // Column Name           Tasks
         // string                0
         // string                0
 
-        result.append(getHelloMessage(dto.email, date))
+        result.append(getHelloMessage(dto.email))
         result.append(separator)
         result.append(separator)
         result.append(getCaption(date))
@@ -67,8 +67,7 @@ class MessageService(private val templateEngine: TemplateEngine) {
         for ((columnName, tasks) in dto.columns) {
             result.append(
                 String.format(
-                    "%-20s  %-20s%s",
-                    columnName, tasks, separator
+                    "%-20s  %-20s%s", columnName, tasks, separator
                 )
             )
         }
