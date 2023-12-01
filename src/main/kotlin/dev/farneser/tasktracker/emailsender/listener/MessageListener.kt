@@ -30,10 +30,11 @@ class MessageListener(private val messageService: MessageService, private val em
 
         log.debug("Parsed message from scheduled queue: {}", dto)
 
-        val result = messageService.buildMessageBody(dto)
+        val plainMessage = messageService.buildPlainMessage(dto)
+        val htmlMessage = messageService.buildHtmlMessage(dto)
 
         log.info("Sending email to ${dto.email}")
 
-        emailService.send(dto.email, "Scheduled email", result)
+        emailService.send(dto.email, "Task tracker scheduled statistics", plainMessage, htmlMessage)
     }
 }
