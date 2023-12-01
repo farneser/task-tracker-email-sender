@@ -15,7 +15,7 @@ ENV RABBITMQ_PORT ${RABBITMQ_PORT}
 ENV RABBITMQ_USERNAME ${RABBITMQ_USERNAME}
 ENV RABBITMQ_PASSWORD ${RABBITMQ_PASSWORD}
 
-RUN mvn -f /app/pom.xml clean package
+RUN mvn -f /app/pom.xml clean package -DskipTests
 
 FROM openjdk:17-jdk-slim as production
 

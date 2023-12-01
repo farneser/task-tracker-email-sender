@@ -46,18 +46,23 @@ class MessageService(private val templateEngine: TemplateEngine) {
 
     fun buildPlainMessage(dto: StatisticDto): String {
         val result = StringBuilder()
-        val separator = "\r\n\r\n";
+        val separator = "\r\n"
+        val date = getFormattedDate()
 
-        result.append(String.format("%-20s: %s%s", "Email", dto.email, separator))
+        // Hello, {{email}}! Here is your statistic for {{date}} {{time}}
+        //
+        // Your statistic for {{date}} {{time}}
+        // Column Name           Tasks
+        // string                0
+        // string                0
 
-        result.append(
-            String.format(
-                "%-20s  %-20s%s",
-                "Column Name",
-                "Tasks",
-                separator
-            )
-        )
+        result.append(getHelloMessage(dto.email, date))
+        result.append(separator)
+        result.append(separator)
+        result.append(getCaption(date))
+        result.append(separator)
+
+        result.append(String.format("%-20s  %-20s%s", "Column Name", "Tasks", separator))
 
         for ((columnName, tasks) in dto.columns) {
             result.append(
