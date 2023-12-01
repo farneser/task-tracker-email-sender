@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<!--/*@thymesVar id="dto" type="dev.farneser.tasktracker.emailsender.dto.StatisticDto"*/-->
+<body th:text="${dto}">
+<h1>Statistic</h1>
+
+<table>
+    <tr>
+        <th>Column</th>
+        <th>Value</th>
+    </tr>
+    <tr th:each="column : ${dto.columns}">
+        <td th:text="${column.getColumnName()}"></td>
+        <td th:text="${column.getTasks()}"></td>
+    </tr>
+</table>
+</body>
+</html>
