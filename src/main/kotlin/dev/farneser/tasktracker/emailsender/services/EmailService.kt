@@ -18,28 +18,28 @@ class EmailService(private val javaMailSender: JavaMailSender) {
     }
 
     fun send(to: String, subject: String, message: String, htmlMessage: String) {
-        try {
-            val messageHelper = MimeMessageHelper(javaMailSender.createMimeMessage(), "UTF-8")
+        Assert.notNull(to, "Email address must not be null")
+        Assert.notNull(subject, "Subject must not be null")
+        Assert.notNull(message, "Message must not be null")
+        Assert.notNull(htmlMessage, "Html message must not be null")
 
-            Assert.notNull(to, "Email address must not be null")
-            Assert.notNull(subject, "Subject must not be null")
-            Assert.notNull(message, "Message must not be null")
+        try {
+            val mimeMessage = javaMailSender.createMimeMessage()
+            val messageHelper = MimeMessageHelper(mimeMessage, true, "UTF-8")
 
             messageHelper.setTo(to)
             messageHelper.setSubject(subject)
 
-            if (htmlMessage.isEmpty()) {
-                messageHelper.setText(message, false)
-            } else {
-                messageHelper.setText(message, htmlMessage)
-            }
+            mimeMessage.setHeader("Content-Transfer-Encoding", "quoted-printable")
 
+            messageHelper.setText(message, htmlMessage)
             messageHelper.setFrom(mailFrom)
 
-            javaMailSender.send(messageHelper.mimeMessage)
+            javaMailSender.send(mimeMessage)
             log.info("Email sent to $to")
         } catch (e: Exception) {
-            log.info("Error sending email to $to", e)
+            log.error("Error sending email to $to", e)
         }
     }
 }
+
