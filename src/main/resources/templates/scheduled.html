@@ -69,7 +69,7 @@
             <b class="cell"><b>Tasks</b></b>
         </p>
 
-        <!--/*@thymesVar id="data" type="dev.farneser.tasktracker.emailsender.dto.StatisticDto"*/-->
+        <!--/*@thymesVar id="data" type="dev.farneser.tasktracker.emailsender.dto.StatisticsDto"*/-->
         <p class="row" th:each="column : ${data.columns}">
             <span class="cell" th:text="${column.getColumnName()}"></span>
             <span style="display: none"> - </span>
