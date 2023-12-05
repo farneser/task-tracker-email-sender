@@ -17,4 +17,9 @@ class RabbitMqConfig {
     fun scheduledQueue(): Queue {
         return Queue(QueueType.SCHEDULED)
     }
+
+    @Bean
+    fun confirmEmailQueue(): Queue {
+        return Queue(QueueType.CONFIRM_EMAIL)
+    }
 }

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="">
+<head>
+    <title>Email Confirmation</title>
+</head>
+<body>
+
+<h2>Email Confirmation</h2>
+
+<p>Hello, thank you for registering with us. Please click the link below to confirm your email address</p>
+
+<!--/*@thymesVar id="dto" type="dev.farneser.tasktracker.emailsender.dto.ConfirmEmailToken"*/-->
+<!--/*@thymesVar id="confirmationUrl" type="java.lang.String"*/-->
+<a th:href="${confirmationUrl}">Confirm Email</a>
+
+<p>This link will expire on <strong th:text="${#dates.format(dto.expiresAt, 'yyyy-MM-dd HH:mm')}"></strong>.</p>
+<p>If you did not register with us, you can ignore this email.</p>
+
+</body>
+</html>
