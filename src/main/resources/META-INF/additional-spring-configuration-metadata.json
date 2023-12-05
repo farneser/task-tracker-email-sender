@@ -1,7 +1,7 @@
 {
   "properties": [
     {
-      "name": "application.client.conifrmation.url",
+      "name": "application.client.conformation.url",
       "type": "java.lang.String",
       "description": "The URL endpoint (with query) to which the client will be redirected after a successful authentication."
     }
