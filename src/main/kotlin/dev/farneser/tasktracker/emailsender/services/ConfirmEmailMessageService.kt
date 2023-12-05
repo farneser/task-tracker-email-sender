@@ -21,12 +21,20 @@ class ConfirmEmailMessageService(private val templateEngine: TemplateEngine) : M
         val context = Context()
 
         context.setVariable("dto", dto)
-        context.setVariable("confirmationUrl", confirmationUrl)
+        context.setVariable("confirmationUrl", confirmationUrl + dto.token)
 
         return templateEngine.process("confirm-email", context)
     }
 
     override fun buildPlainMessage(dto: ConfirmEmailToken): String {
-        return Gson().toJson(dto)
+        val result = StringBuilder()
+
+        result.append("Email Confirmation\n\n")
+        result.append("Hello, thank you for registering with us. Please click the link below to confirm your email address\n\n")
+        result.append(confirmationUrl + dto.token + "\n\n")
+        result.append("This link will expire on " + dto.expiresAt + ".\n")
+        result.append("If you did not register with us, you can ignore this email.\n")
+
+        return result.toString()
     }
 }

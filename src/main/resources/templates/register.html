@@ -1,10 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="rn">
-
 <head>
     <title>Registration Success</title>
 </head>
-
 <body>
 
 <!--/*@thymesVar id="dto" type="dev.farneser.tasktracker.emailsender.dto.ConfirmEmailToken"*/-->
@@ -16,12 +14,10 @@
     <div th:if="${dto.expiresAt != null}">
         <p>To complete the registration process, please click the following link to confirm your email:</p>
         <!--/*@thymesVar id="confirmationUrl" type="java.lang.String"*/-->
-        <a th:href="${confirmationUrl + dto.token}">Confirm Email</a>
+        <a th:href="${confirmationUrl}">Confirm Email</a>
         <p>This link will expire on <strong th:text="${dto.expiresAt}"></strong>. To
             get new confirmation email you should try to log in</p>
     </div>
 </div>
-
 </body>
-
 </html>
