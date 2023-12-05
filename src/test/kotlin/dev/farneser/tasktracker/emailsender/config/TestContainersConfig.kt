@@ -24,7 +24,7 @@ class TestContainersConfig {
                 cmd.withHostConfig(
                     HostConfig().withPortBindings(
                         PortBinding(
-                            Ports.Binding.bindPort(15672),
+                            Ports.Binding.bindPort(14253),
                             ExposedPort(5672)
                         )
                     )
