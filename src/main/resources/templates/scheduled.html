@@ -62,19 +62,22 @@
 
     <!--/*@thymesVar id="caption" type="java.lang.String"*/-->
     <p th:text="${caption}"></p>
-
-    <div class="table">
+    <!--/*@thymesVar id="data" type="dev.farneser.tasktracker.emailsender.dto.StatisticsDto"*/-->
+    <div class="table" th:if="${!data.columns.isEmpty()}">
         <p class="row header-row">
             <b class="cell"><b>Column</b></b>
             <b class="cell"><b>Tasks</b></b>
         </p>
 
-        <!--/*@thymesVar id="data" type="dev.farneser.tasktracker.emailsender.dto.StatisticsDto"*/-->
         <p class="row" th:each="column : ${data.columns}">
             <span class="cell" th:text="${column.getColumnName()}"></span>
             <span style="display: none"> - </span>
             <span class="cell" th:text="${column.getTasks()}"></span>
         </p>
+    </div>
+
+    <div th:if="${data.columns.isEmpty()}">
+        <p>No statistics found. Create columns and manage your tasks to get more info about your productivity</p>
     </div>
 </div>
 

@@ -1,12 +1,55 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="rn">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <title>Registration Success</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        #container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #0088cc;
+        }
+
+        p {
+            line-height: 1.5;
+        }
+
+        strong {
+            font-weight: bold;
+        }
+
+        a {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 10px 0;
+            background-color: #0088cc;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        a:hover {
+            background-color: #005580;
+        }
+    </style>
 </head>
 <body>
 
 <!--/*@thymesVar id="dto" type="dev.farneser.tasktracker.emailsender.dto.ConfirmEmailToken"*/-->
-<div th:if="${dto != null}">
+<div id="container" th:if="${dto != null}">
     <h2>Registration Successful!</h2>
     <p>Thank you for registering with us. Your email address <strong th:text="${dto.email}"></strong> has been
         successfully registered.</p>
@@ -15,8 +58,8 @@
         <p>To complete the registration process, please click the following link to confirm your email:</p>
         <!--/*@thymesVar id="confirmationUrl" type="java.lang.String"*/-->
         <a th:href="${confirmationUrl}">Confirm Email</a>
-        <p>This link will expire on <strong th:text="${dto.expiresAt}"></strong>. To
-            get new confirmation email you should try to log in</p>
+        <p>This link will expire on <strong th:text="${dto.expiresAt}"></strong>. To get a new confirmation email, you
+            should try to log in.</p>
     </div>
 </div>
 </body>

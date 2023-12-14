@@ -39,7 +39,7 @@ java -jar target/task-tracker-email-sender-0.0.1-SNAPSHOT.jar
 
 | Parameter               | Default value                          | Description                              |
 |-------------------------|----------------------------------------|------------------------------------------|
-| LOG_LEVEL               | `INFO`                                 | Spring application logging level         |
+| EMAIL_SENDER_LOG_LEVEL  | `INFO`                                 | Spring application logging level         |
 | CLIENT_CONFIRMATION_URL | `http://localhost:3000/confirm?token=` | URL for client confirmation (with query) |
 
 ### SMTP
