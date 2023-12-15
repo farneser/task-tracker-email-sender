@@ -33,7 +33,7 @@ class RegisterMessageService(private val templateEngine: TemplateEngine) : Messa
 
         if (dto.expiresAt != null) {
             result.append("To complete the registration process, please click the following link to confirm your email:\n\n")
-            result.append(confirmationUrl + dto.token + "\n\n")
+            result.append("[confirm email](${confirmationUrl}${dto.token})\n\n")
             result.append("This link will expire on " + dto.expiresAt + ". To get new confirmation email you should try to log in\n")
         }
 

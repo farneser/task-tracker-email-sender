@@ -10,7 +10,7 @@ import org.thymeleaf.context.Context
 @Service
 class ConfirmEmailMessageService(private val templateEngine: TemplateEngine) : MessageService<ConfirmEmailToken> {
 
-    @Value("\${application.client.conformation.url")
+    @Value("\${application.client.conformation.url}")
     val confirmationUrl: String = ""
 
     override fun parseMessage(message: String): ConfirmEmailToken {
@@ -31,7 +31,7 @@ class ConfirmEmailMessageService(private val templateEngine: TemplateEngine) : M
 
         result.append("Email Confirmation\n\n")
         result.append("Hello, thank you for registering with us. Please click the link below to confirm your email address\n\n")
-        result.append(confirmationUrl + dto.token + "\n\n")
+        result.append("[confirm email](${confirmationUrl}${dto.token})\n\n")
         result.append("This link will expire on " + dto.expiresAt + ".\n")
         result.append("If you did not register with us, you can ignore this email.\n")
 
