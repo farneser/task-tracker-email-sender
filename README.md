@@ -1,5 +1,8 @@
 # task-tracker-email-sender
 
+[![Maven build](https://github.com/farneser/task-tracker-email-sender/actions/workflows/maven.yml/badge.svg)](https://github.com/farneser/task-tracker-email-sender/actions/workflows/maven.yml)
+[![Docker Image build](https://github.com/farneser/task-tracker-email-sender/actions/workflows/docker.yml/badge.svg)](https://github.com/farneser/task-tracker-email-sender/actions/workflows/docker.yml)
+
 The Task Tracker Email Sender is a specialized microservice designed to seamlessly integrate into a larger stack,
 working in tandem with API services and schedulers. Developed with the purpose of enhancing task tracking
 functionalities, this microservice excels at efficiently processing messages from RabbitMQ and dispatching them via
