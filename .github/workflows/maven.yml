@@ -28,5 +28,5 @@ jobs:
       - name: Store artifact
         uses: actions/upload-artifact@v3
         with:
-          name: Cloud file storage jar build
+          name: Task Tracker Email Sender jar build
           path: target/task-tracker-email-sender-0.0.1-SNAPSHOT.jar
