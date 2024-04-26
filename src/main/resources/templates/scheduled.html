@@ -63,21 +63,26 @@
     <!--/*@thymesVar id="caption" type="java.lang.String"*/-->
     <p th:text="${caption}"></p>
     <!--/*@thymesVar id="data" type="dev.farneser.tasktracker.emailsender.dto.StatisticsDto"*/-->
-    <div class="table" th:if="${!data.columns.isEmpty()}">
-        <p class="row header-row">
-            <b class="cell"><b>Column</b></b>
-            <b class="cell"><b>Tasks</b></b>
-        </p>
+    <div th:if="${!data.projects.isEmpty()}">
+        <div th:each="project : ${data.projects}">
+            <p th:text="${project.getProjectName()}"></p>
 
-        <p class="row" th:each="column : ${data.columns}">
-            <span class="cell" th:text="${column.getColumnName()}"></span>
-            <span style="display: none"> - </span>
-            <span class="cell" th:text="${column.getTasks()}"></span>
-        </p>
+            <div class="table" th:if="${!project.statuses.isEmpty()}">
+                <p class="row header-row">
+                    <b class="cell"><b>Status</b></b>
+                    <b class="cell"><b>Tasks</b></b>
+                </p>
+
+                <p class="row" th:each="status : ${project.statuses}">
+                    <span class="cell" th:text="${status.getStatusName()}"></span>
+                    <span style="display: none"> - </span>
+                    <span class="cell" th:text="${status.getTasks()}"></span>
+                </p>
+            </div>
+        </div>
     </div>
-
-    <div th:if="${data.columns.isEmpty()}">
-        <p>No statistics found. Create columns and manage your tasks to get more info about your productivity</p>
+    <div th:if="${data.projects.isEmpty()}">
+        <p>No projects found. Create project and manage your tasks to get more info about your productivity</p>
     </div>
 </div>
 

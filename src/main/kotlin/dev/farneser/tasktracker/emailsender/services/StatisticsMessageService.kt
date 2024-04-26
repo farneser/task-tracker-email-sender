@@ -26,6 +26,10 @@ class StatisticsMessageService(private val templateEngine: TemplateEngine) : Mes
         return "Your statistic for $date"
     }
 
+    private fun getProjectCaption(name: String): String {
+        return "$name statistics"
+    }
+
     override fun parseMessage(message: String): StatisticsDto {
         return Gson().fromJson(message, StatisticsDto::class.java)
     }
@@ -51,7 +55,7 @@ class StatisticsMessageService(private val templateEngine: TemplateEngine) : Mes
         // Hello, {{email}}! Here is your statistic
         //
         // Your statistic for {{date}} {{time}}
-        // Column Name           Tasks
+        // Status Name           Tasks
         // string                0
         // string                0
 
@@ -60,11 +64,17 @@ class StatisticsMessageService(private val templateEngine: TemplateEngine) : Mes
         result.append(separator)
         result.append(getCaption(date))
         result.append(separator)
+        result.append(separator)
 
-        result.append(String.format("%-20s  %-20s%s", "Column Name", "Tasks", separator))
+        for (project in dto.projects) {
+            result.append(separator)
+            result.append(getProjectCaption(project.projectName))
+            result.append(separator)
+            result.append(String.format("%-20s  %-20s%s", "Status Name", "Tasks", separator))
 
-        for ((columnName, tasks) in dto.projects) {
-            result.append(String.format("%-20s  %-20s%s", columnName, tasks, separator))
+            for ((statusName, tasks) in project.statuses) {
+                result.append(String.format("%-20s  %-20s%s", statusName, tasks, separator))
+            }
         }
 
         return result.toString()
