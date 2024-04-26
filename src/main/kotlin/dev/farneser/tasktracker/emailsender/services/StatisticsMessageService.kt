@@ -63,7 +63,7 @@ class StatisticsMessageService(private val templateEngine: TemplateEngine) : Mes
 
         result.append(String.format("%-20s  %-20s%s", "Column Name", "Tasks", separator))
 
-        for ((columnName, tasks) in dto.columns) {
+        for ((columnName, tasks) in dto.projects) {
             result.append(String.format("%-20s  %-20s%s", columnName, tasks, separator))
         }
 
